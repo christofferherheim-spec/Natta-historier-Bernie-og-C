@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bernhard og Eva til månen!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Bangers&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFCFE; --line:#C9DDF2; --margin:#E8505B; --ink:#1F2A44;
+  --yellow:#FFD23F; --green:#7BD389; --moon:#D9DCE3; --moonDark:#B5BAC6;
+  --rocket:#C8955B; --rocketDark:#9C6B3A; --sky:#2B3A67; --red:#E8505B; --blue:#4A90D9; --skin:#F4C9A0; --hair1:#7A4B22; --hair2:#E9B949;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#141E36; --line:#22325A; --margin:#B23A45; --ink:#EEF2FA;
+    --moon:#C9CDD8; --moonDark:#9AA0AF; --sky:#0C1428;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#141E36; --line:#22325A; --margin:#B23A45; --ink:#EEF2FA;
+  --moon:#C9CDD8; --moonDark:#9AA0AF; --sky:#0C1428;
+  color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{
+  margin:0; color:var(--ink);
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(to right, transparent 0 44px, var(--margin) 44px 46px, transparent 46px),
+    repeating-linear-gradient(to bottom, transparent 0 41px, var(--line) 41px 43px);
+  font-family:"Andika", "Comic Sans MS", "Trebuchet MS", system-ui, sans-serif;
+  font-size:clamp(21px, 2.6vw, 26px);
+  line-height:1.75;
+}
+main{max-width:36rem; margin:0 auto; padding:2rem 1.25rem 5rem 3.75rem}
+p{margin:0 0 1.6em}
+h1,h2,.boom{font-family:"Bangers", "Impact", sans-serif; font-weight:400; letter-spacing:.03em; line-height:1}
+h1{font-size:clamp(3rem, 11vw, 5.2rem); margin:.5rem 0 1rem; transform:rotate(-3deg); color:var(--ink)}
+h1 span{display:block; font-size:.45em; color:var(--margin)}
+h2{font-size:clamp(2rem, 6vw, 2.8rem); margin:4.5rem 0 1.5rem; border-bottom:4px solid var(--ink); display:inline-block; padding-bottom:.2rem}
+.by{font-size:.8em; opacity:.8; margin-bottom:2.5rem}
+.boom{
+  display:block; text-align:center; font-size:clamp(3rem, 13vw, 6rem);
+  color:var(--yellow); -webkit-text-stroke:3px var(--ink); paint-order:stroke fill;
+  margin:2.5rem 0; transform:rotate(-4deg);
+}
+.boom.small{font-size:clamp(2.2rem, 8vw, 3.6rem); transform:rotate(3deg); color:var(--green)}
+.boom.red{color:var(--red)}
+figure{margin:2.5rem 0}
+figure svg{width:100%; height:auto; display:block}
+figcaption{text-align:center; font-size:.8em; font-style:italic; margin-top:.4rem}
+.pic{border:4px solid var(--ink); border-radius:6px 14px 8px 18px; background:var(--paper); overflow:hidden}
+.list{border:3px dashed var(--ink); padding:1.2rem 1.2rem 0.4rem; margin:2rem 0; transform:rotate(-1deg); background:var(--paper)}
+.list h3{font-family:"Bangers",sans-serif; font-weight:400; font-size:1.6em; margin:0 0 .5rem}
+.list ul{margin:0 0 1rem; padding-left:1.2rem}
+.list li{margin-bottom:.4rem}
+.fact{border-left:8px solid var(--yellow); padding:.8rem 1rem; margin:2rem 0; background:color-mix(in srgb, var(--yellow) 14%, var(--paper))}
+.fact b{font-family:"Bangers",sans-serif; font-weight:400; font-size:1.3em; letter-spacing:.04em; display:block}
+.count{display:flex; flex-wrap:wrap; gap:.6rem; justify-content:center; margin:2rem 0; font-family:"Bangers",sans-serif; font-size:2.2rem}
+.count span{width:3.2rem; height:3.2rem; border:3px solid var(--ink); border-radius:50%; display:grid; place-items:center; background:var(--paper)}
+.count span:last-child{background:var(--yellow); color:#1F2A44; width:auto; border-radius:999px; padding:0 1rem}
+.flip{border:5px solid var(--ink); border-radius:10px; padding:1rem; margin:3rem 0; text-align:center; background:var(--paper)}
+.flip h3{font-family:"Bangers",sans-serif; font-weight:400; font-size:2.4em; margin:0; color:var(--margin)}
+.flip p{font-size:.85em; margin:.2rem 0 1rem}
+.flip .frames{position:relative}
+.flip .frames svg{width:100%; height:auto; display:block}
+.flip .frames svg + svg{position:absolute; inset:0; visibility:hidden}
+.flip.on .frames svg:first-child{visibility:hidden}
+.flip.on .frames svg + svg{visibility:visible}
+.flip button{
+  font-family:"Bangers",sans-serif; font-size:2rem; letter-spacing:.05em;
+  margin-top:1rem; padding:.4rem 2.2rem; border:4px solid var(--ink); border-radius:999px;
+  background:var(--yellow); color:#1F2A44; cursor:pointer; box-shadow:4px 4px 0 var(--ink);
+}
+.flip button:active{transform:translate(3px,3px); box-shadow:1px 1px 0 var(--ink)}
+.flip button:focus-visible{outline:4px solid var(--blue); outline-offset:4px}
+.end{text-align:center; font-family:"Bangers",sans-serif; font-size:clamp(2.6rem,10vw,4.5rem); margin:4rem 0 1rem}
+.next{text-align:center; font-size:.85em}
+svg .ink{stroke:var(--ink); stroke-width:4; stroke-linecap:round; stroke-linejoin:round; fill:none}
+svg .fillink{fill:var(--ink)}
+svg text{font-family:"Bangers",sans-serif; fill:var(--ink)}
+@media (max-width:480px){ main{padding-left:3.4rem; padding-right:1rem} }
+</style>
+</head>
+<body>
+<main>
+
+<h1>Bernhard og Eva <span>til månen!</span></h1>
+<p class="by">En helt sann historie. Nesten.</p>
+
+<figure>
+<div class="pic">
+<svg viewBox="0 0 400 300" role="img" aria-label="Bernhard med fotball og Eva med blyant, begge med romhjelm">
+  <rect width="400" height="300" fill="var(--sky)"/>
+  <g fill="#fff"><circle cx="40" cy="40" r="2"/><circle cx="120" cy="25" r="2.5"/><circle cx="350" cy="50" r="2"/><circle cx="300" cy="20" r="1.5"/><circle cx="200" cy="60" r="2"/><circle cx="70" cy="110" r="1.5"/><circle cx="370" cy="130" r="2"/></g>
+  <circle cx="330" cy="80" r="38" fill="var(--moon)"/><circle cx="318" cy="70" r="7" fill="var(--moonDark)"/><circle cx="342" cy="95" r="5" fill="var(--moonDark)"/>
+  <!-- Bernhard -->
+  <g transform="translate(110 120)">
+    <circle cx="0" cy="40" r="42" fill="#cfe9ff" opacity=".35" stroke="#fff" stroke-width="4"/>
+    <circle cx="0" cy="42" r="28" fill="var(--skin)" stroke="#1F2A44" stroke-width="4"/>
+    <path d="M-26 32 Q-20 8 0 12 Q22 6 27 32 Q14 20 0 24 Q-14 18 -26 32Z" fill="var(--hair1)" stroke="#1F2A44" stroke-width="3"/>
+    <circle cx="-10" cy="42" r="4" fill="#1F2A44"/><circle cx="10" cy="42" r="4" fill="#1F2A44"/>
+    <path d="M-12 56 Q0 68 12 56" stroke="#1F2A44" stroke-width="4" fill="#fff"/>
+    <rect x="-26" y="82" width="52" height="70" rx="14" fill="var(--blue)" stroke="#1F2A44" stroke-width="4"/>
+    <text x="-9" y="125" font-size="30" fill="#fff" style="fill:#fff">B</text>
+    <circle cx="48" cy="150" r="17" fill="#fff" stroke="#1F2A44" stroke-width="4"/>
+    <path d="M42 140 l8 0 l3 8 l-7 5 l-7 -5Z" fill="#1F2A44"/>
+  </g>
+  <!-- Eva -->
+  <g transform="translate(250 120)">
+    <circle cx="0" cy="40" r="42" fill="#cfe9ff" opacity=".35" stroke="#fff" stroke-width="4"/>
+    <circle cx="0" cy="42" r="28" fill="var(--skin)" stroke="#1F2A44" stroke-width="4"/>
+    <path d="M-28 50 Q-30 8 0 12 Q30 8 28 50 Q24 26 0 22 Q-24 26 -28 50Z" fill="var(--hair2)" stroke="#1F2A44" stroke-width="3"/>
+    <circle cx="-10" cy="44" r="6" fill="none" stroke="#1F2A44" stroke-width="3"/><circle cx="10" cy="44" r="6" fill="none" stroke="#1F2A44" stroke-width="3"/><line x1="-4" y1="44" x2="4" y2="44" stroke="#1F2A44" stroke-width="3"/>
+    <circle cx="-10" cy="44" r="2" fill="#1F2A44"/><circle cx="10" cy="44" r="2" fill="#1F2A44"/>
+    <path d="M-8 58 Q0 64 8 58" stroke="#1F2A44" stroke-width="4" fill="none"/>
+    <rect x="-26" y="82" width="52" height="70" rx="14" fill="var(--red)" stroke="#1F2A44" stroke-width="4"/>
+    <text x="-8" y="125" font-size="30" style="fill:#fff">E</text>
+    <g transform="translate(-55 95) rotate(-30)"><rect x="0" y="0" width="10" height="55" fill="var(--yellow)" stroke="#1F2A44" stroke-width="3"/><path d="M0 55 L5 68 L10 55Z" fill="var(--skin)" stroke="#1F2A44" stroke-width="3"/></g>
+  </g>
+</svg>
+</div>
+<figcaption>Bernhard (til venstre) og Eva (til høyre). Ballen har ikke noe navn. Ennå.</figcaption>
+</figure>
+
+<h2>Kapittel 1: Møt heltene</h2>
+
+<p>Dette er Bernhard.</p>
+<p>Bernhard er sju år.<br>Han er verdens beste til å sparke fotball.<br>Han er verdens dårligste til å spise brokkoli.</p>
+<p>Dette er Eva.</p>
+<p>Eva har alltid en plan.<br>Og en blyant.<br>Og en plan B, i tilfelle plan A går i dass.</p>
+<p>En dag lå de på gresset og så opp på månen.</p>
+<p>«Visste du at ingen har vært på månen på kjempelenge?» sa Eva.</p>
+<p>«Hvorfor ikke?» sa Bernhard.</p>
+<p>«Ingen vet,» sa Eva. «Kanskje de bare glemte det.»</p>
+<p>Bernhard satte seg opp.</p>
+<p>«Da drar VI,» sa han.</p>
+
+<span class="boom">DA DRAR VI!</span>
+
+<h2>Kapittel 2: Den store planen</h2>
+
+<p>Eva tok fram blyanten.<br>Hun tegnet og tegnet.<br>Hun tegnet så fort at blyanten nesten tok fyr.</p>
+<p>Så skrev hun en liste.</p>
+
+<div class="list">
+  <h3>Ting vi trenger for å dra til månen</h3>
+  <ul>
+    <li>1 kjempestor pappeske (fra det nye kjøleskapet)</li>
+    <li>14 ruller teip</li>
+    <li>2 sykkelhjelmer</li>
+    <li>1 bøtte til å ha på hodet (ekstra sikkerhet)</li>
+    <li>30 flasker brus</li>
+    <li>200 Mentos</li>
+    <li>1 boks bakte bønner (reservedrivstoff)</li>
+    <li>1 fotball (Bernhard sa det var viktig)</li>
+    <li>Matpakke</li>
+  </ul>
+</div>
+
+<p>«Hvorfor bakte bønner?» spurte Bernhard.</p>
+<p>«Ikke spør,» sa Eva. «Du får se.»</p>
+
+<p>De teipet og teipet.<br>De teipet så mye at katten til naboen ble teipet fast til raketten.<br>(De teipet den løs igjen. Den var sur.)</p>
+
+<p>Til slutt var raketten ferdig. Den het:</p>
+
+<span class="boom red">SUPERESKEN 3000</span>
+
+<figure>
+<div class="pic">
+<svg viewBox="0 0 400 320" role="img" aria-label="En rakett laget av pappeske og teip, med en brusflaske-motor">
+  <rect width="400" height="320" fill="var(--paper)"/>
+  <path class="ink" d="M10 290 Q100 280 200 292 T390 288"/>
+  <path d="M150 260 L150 110 L200 40 L250 110 L250 260Z" fill="var(--rocket)" stroke="#1F2A44" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M150 140 L250 160 M150 200 L250 185" stroke="#d8d8d8" stroke-width="12" opacity=".8"/>
+  <path d="M150 140 L250 160 M150 200 L250 185" stroke="#1F2A44" stroke-width="2" stroke-dasharray="4 4"/>
+  <circle cx="200" cy="110" r="22" fill="#cfe9ff" stroke="#1F2A44" stroke-width="5"/>
+  <path d="M150 220 L115 270 L150 260Z M250 220 L285 270 L250 260Z" fill="var(--red)" stroke="#1F2A44" stroke-width="5" stroke-linejoin="round"/>
+  <text x="163" y="245" font-size="20">FRAGILE</text>
+  <rect x="180" y="260" width="16" height="30" fill="var(--green)" stroke="#1F2A44" stroke-width="3"/>
+  <rect x="204" y="260" width="16" height="30" fill="var(--green)" stroke="#1F2A44" stroke-width="3"/>
+  <text x="270" y="80" font-size="22">← vindu</text>
+  <text x="285" y="150" font-size="22">← teip</text>
+  <text x="285" y="175" font-size="22">(mye)</text>
+  <text x="40" y="250" font-size="22">brus-</text>
+  <text x="40" y="272" font-size="22">motor →</text>
+  <path d="M320 260 q10 -18 20 0 q-10 12 -20 0" fill="var(--hair1)" stroke="#1F2A44" stroke-width="3"/>
+  <text x="300" y="235" font-size="18">sur katt</text>
+</svg>
+</div>
+<figcaption>Superesken 3000. Garantert nesten helt trygg.</figcaption>
+</figure>
+
+<h2>Kapittel 3: Nedtelling!</h2>
+
+<p>Bernhard og Eva klatret inn.<br>De tok på seg sykkelhjelmene.<br>Bernhard tok på seg bøtta også.</p>
+<p>Eva slapp alle 200 Mentos ned i brusen.</p>
+
+<div class="count" aria-label="Nedtelling fra ti">
+  <span>10</span><span>9</span><span>8</span><span>7</span><span>6</span><span>5</span><span>4</span><span>3</span><span>2</span><span>1</span><span>NÅ!</span>
+</div>
+
+<span class="boom">FSSSSHHH… BRRRRUMMMM!</span>
+
+<p>Superesken 3000 skjøt opp i lufta!</p>
+<p>Forbi taket.<br>Forbi en måke som mistet pommes fritesen sin.<br>Forbi et fly der en pilot sølte kaffe i fanget.</p>
+<p>«Var det en ESKE?» sa piloten.</p>
+
+<figure>
+<div class="pic">
+<svg viewBox="0 0 400 320" role="img" aria-label="Raketten flyr opp forbi et fly og en måke">
+  <rect width="400" height="320" fill="#9FD3F5"/>
+  <path d="M30 70 q20 -25 45 -5 q20 -20 40 5 q-40 12 -85 0Z" fill="#fff"/>
+  <path d="M280 230 q20 -25 45 -5 q20 -20 40 5 q-40 12 -85 0Z" fill="#fff"/>
+  <g transform="translate(190 60) rotate(15)">
+    <path d="M-25 160 L-25 40 L0 0 L25 40 L25 160Z" fill="var(--rocket)" stroke="#1F2A44" stroke-width="5" stroke-linejoin="round"/>
+    <circle cx="0" cy="60" r="14" fill="#cfe9ff" stroke="#1F2A44" stroke-width="4"/>
+    <path d="M-20 160 Q-30 210 0 250 Q30 210 20 160Z" fill="var(--yellow)" stroke="#1F2A44" stroke-width="4"/>
+    <path d="M-10 165 Q-12 195 0 215 Q12 195 10 165Z" fill="var(--red)"/>
+  </g>
+  <g transform="translate(60 180)">
+    <path d="M0 20 L90 14 Q110 20 90 26 L0 22Z" fill="#fff" stroke="#1F2A44" stroke-width="4"/>
+    <path d="M40 18 L25 -10 L50 18Z M40 22 L25 45 L50 22Z" fill="#fff" stroke="#1F2A44" stroke-width="4"/>
+    <text x="70" y="-5" font-size="22">!!!</text>
+  </g>
+  <g transform="translate(310 110)">
+    <path d="M0 10 q15 -15 25 0 q10 -15 25 0" class="ink"/>
+    <path d="M18 30 l10 -6 l4 10Z" fill="var(--yellow)" stroke="#1F2A44" stroke-width="2"/>
+    <text x="-10" y="-8" font-size="20">MIN POMMES!</text>
+  </g>
+</svg>
+</div>
+<figcaption>Måka har fortsatt ikke kommet over det.</figcaption>
+</figure>
+
+<p>Men så skjedde det noe skummelt.</p>
+<p>Raketten begynte å gå saktere.<br>Og saktere.<br>Og…</p>
+
+<span class="boom small">…pfffft.</span>
+
+<p>«Brusen er tom!» ropte Eva.</p>
+<p>De hang stille midt i verdensrommet.<br>Et romskip fra Mars kjørte forbi og tutet på dem.</p>
+<p>«Nå trenger vi reservedrivstoffet,» sa Eva.</p>
+<p>Bernhard så på boksen med bakte bønner.<br>Så så han på Eva.<br>Så så han på bønnene igjen.</p>
+<p>«Å nei,» sa han.</p>
+<p>«Å JO,» sa Eva.</p>
+<p>Bernhard spiste hele boksen.<br>Så ventet de.<br>Det ble veldig stille.</p>
+<p>«Hold dere fast,» sa Bernhard.</p>
+
+<span class="boom red">PRRRRRRRRRRRT!</span>
+
+<p>Superesken 3000 skjøt av gårde som en kanonkule!</p>
+<p>«Det var det ekleste OG det smarteste jeg har sett i hele mitt liv,» sa Eva, og holdt seg for nesa.</p>
+
+<h2>Kapittel 4: På månen</h2>
+
+<span class="boom small">DUNK!</span>
+
+<p>De landet på månen.<br>Det var grått.<br>Det var stille.<br>Og det luktet litt bønner.</p>
+<p>Bernhard tok et lite hopp.<br>Han hoppet så høyt at han ble borte i fem minutter.</p>
+
+<div class="fact">
+  <b>Ekte månefakta!</b>
+  På månen veier du nesten ingenting. Du kan hoppe seks ganger så høyt som hjemme. Det er helt sant. Spør hvem som helst.
+</div>
+
+<p>Bernhard la fotballen ned.<br>Han tok fart.<br>Han sparket så hardt han kunne.</p>
+
+<span class="boom">DUNK!</span>
+
+<p>Ballen fløy og fløy og fløy.<br>Eva regnet på det.<br>«Den lander i Australia på tirsdag,» sa hun.</p>
+<p>Akkurat da hørte de en stemme bak en stein.</p>
+<p>«Psst! Hei! Dere der!»</p>
+
+<figure>
+<div class="pic">
+<svg viewBox="0 0 400 300" role="img" aria-label="Et lite grønt romvesen med tre øyne og bare én sokk">
+  <rect width="400" height="300" fill="var(--sky)"/>
+  <g fill="#fff"><circle cx="40" cy="30" r="2"/><circle cx="360" cy="40" r="2.5"/><circle cx="250" cy="25" r="1.5"/><circle cx="90" cy="90" r="2"/></g>
+  <circle cx="330" cy="70" r="30" fill="#4A90D9" stroke="#fff" stroke-width="3"/><path d="M315 60 q10 -8 20 2 q-5 15 -15 8Z M335 80 q8 -5 12 4 q-8 6 -12 -4Z" fill="var(--green)"/>
+  <path d="M0 240 Q100 220 200 235 T400 230 L400 300 L0 300Z" fill="var(--moon)"/>
+  <ellipse cx="80" cy="262" rx="22" ry="6" fill="var(--moonDark)"/><ellipse cx="300" cy="270" rx="30" ry="7" fill="var(--moonDark)"/>
+  <g transform="translate(200 150)">
+    <path d="M-12 -55 Q-30 -95 -40 -90 M12 -55 Q30 -95 40 -90" stroke="#1F2A44" stroke-width="4" fill="none"/>
+    <circle cx="-40" cy="-90" r="7" fill="var(--yellow)" stroke="#1F2A44" stroke-width="3"/><circle cx="40" cy="-90" r="7" fill="var(--yellow)" stroke="#1F2A44" stroke-width="3"/>
+    <ellipse cx="0" cy="10" rx="55" ry="70" fill="var(--green)" stroke="#1F2A44" stroke-width="5"/>
+    <circle cx="-22" cy="-20" r="13" fill="#fff" stroke="#1F2A44" stroke-width="3"/><circle cx="0" cy="-35" r="13" fill="#fff" stroke="#1F2A44" stroke-width="3"/><circle cx="22" cy="-20" r="13" fill="#fff" stroke="#1F2A44" stroke-width="3"/>
+    <circle cx="-19" cy="-18" r="5" fill="#1F2A44"/><circle cx="3" cy="-33" r="5" fill="#1F2A44"/><circle cx="25" cy="-18" r="5" fill="#1F2A44"/>
+    <path d="M-20 15 Q0 5 20 15" stroke="#1F2A44" stroke-width="4" fill="none"/>
+    <path d="M-25 75 L-25 92 M25 75 L25 92" stroke="#1F2A44" stroke-width="5"/>
+    <path d="M-36 92 L-18 92 L-18 84 L-30 84Z" fill="var(--red)" stroke="#1F2A44" stroke-width="3"/>
+    <ellipse cx="28" cy="94" rx="10" ry="4" fill="var(--green)" stroke="#1F2A44" stroke-width="3"/>
+  </g>
+  <text x="20" y="200" font-size="26" style="fill:#fff">HEI!</text>
+</svg>
+</div>
+<figcaption>Klumpen. Han har mistet den andre sokken. Det er en lang historie.</figcaption>
+</figure>
+
+<p>Det var et lite, grønt romvesen.<br>Han hadde tre øyne.<br>Og bare én sokk.</p>
+<p>«Jeg heter Klumpen,» sa han. «Og vi har et KJEMPEPROBLEM.»</p>
+<p>«Hva da?» spurte Eva.</p>
+<p>«Dere vet at månen er laget av is med karamellsmak?»</p>
+<p>«Nei,» sa Eva. «Den er laget av stein.»</p>
+<p>«Smak,» sa Klumpen.</p>
+<p>Bernhard slikket på bakken.<br>Den smakte karamell.</p>
+
+<span class="boom small">MMMMM!</span>
+
+<p>«Problemet er Professor Pølsehjerne,» sa Klumpen. «Han spiser opp månen. Litt hver natt.»</p>
+<p>«Er det derfor månen er mindre noen netter?» sa Bernhard.</p>
+<p>«Akkurat derfor,» sa Klumpen. «Og i kveld skal han spise RESTEN.»</p>
+
+<h2>Kapittel 5: Professor Pølsehjerne</h2>
+
+<p>Bakken begynte å riste.</p>
+
+<span class="boom red">KLONK! KLONK! KLONK!</span>
+
+<p>Over åsen kom en kjempestor robot.<br>Den så ut som en gigantisk spiseskje med bein.<br>Oppå satt en mann med hjerne formet som en grillpølse.</p>
+
+<figure>
+<div class="pic">
+<svg viewBox="0 0 400 340" role="img" aria-label="Professor Pølsehjerne sitter på en kjempestor robot formet som en skje">
+  <rect width="400" height="340" fill="var(--sky)"/>
+  <g fill="#fff"><circle cx="30" cy="30" r="2"/><circle cx="370" cy="60" r="2"/><circle cx="60" cy="150" r="1.5"/></g>
+  <path d="M0 290 Q200 270 400 290 L400 340 L0 340Z" fill="var(--moon)"/>
+  <g transform="translate(200 60)">
+    <ellipse cx="0" cy="70" rx="70" ry="90" fill="#C0C6D2" stroke="#1F2A44" stroke-width="5"/>
+    <ellipse cx="-20" cy="45" rx="18" ry="30" fill="#fff" opacity=".6"/>
+    <rect x="-14" y="155" width="28" height="60" fill="#C0C6D2" stroke="#1F2A44" stroke-width="5"/>
+    <path d="M-14 210 L-55 260 L-70 260 M14 210 L55 260 L70 260" stroke="#1F2A44" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <circle cx="-25" cy="80" r="11" fill="var(--red)" stroke="#1F2A44" stroke-width="3"/><circle cx="25" cy="80" r="11" fill="var(--red)" stroke="#1F2A44" stroke-width="3"/>
+    <rect x="-30" y="110" width="60" height="12" rx="6" fill="#1F2A44"/>
+    <rect x="-22" y="130" width="44" height="18" rx="4" fill="var(--yellow)" stroke="#1F2A44" stroke-width="3"/>
+    <text x="-20" y="145" font-size="12">IKKE TRYKK</text>
+    <!-- professor -->
+    <g transform="translate(0 -30)">
+      <rect x="-22" y="0" width="44" height="40" rx="8" fill="#fff" stroke="#1F2A44" stroke-width="4"/>
+      <circle cx="0" cy="-15" r="20" fill="var(--skin)" stroke="#1F2A44" stroke-width="4"/>
+      <path d="M-32 -38 Q0 -55 32 -38 Q36 -30 28 -28 Q0 -42 -28 -28 Q-36 -30 -32 -38Z" fill="#E07A5F" stroke="#1F2A44" stroke-width="3"/>
+      <path d="M-10 -20 l6 4 M10 -20 l-6 4" stroke="#1F2A44" stroke-width="3"/>
+      <path d="M-10 -6 Q0 -2 10 -6" stroke="#1F2A44" stroke-width="3" fill="none"/>
+      <path d="M-8 -9 q-10 4 -16 -2 M8 -9 q10 4 16 -2" stroke="#1F2A44" stroke-width="3" fill="none"/>
+    </g>
+  </g>
+  <text x="20" y="40" font-size="26" style="fill:#fff">MUAHAHA!</text>
+</svg>
+</div>
+<figcaption>Professor Pølsehjerne og Supersleiva 9000. Begge to er slemme.</figcaption>
+</figure>
+
+<p>«MUAHAHA!» ropte Professor Pølsehjerne. «Med Supersleiva 9000 skal jeg spise opp HELE månen!»</p>
+<p>«Og så?» sa Eva.</p>
+<p>«Og så skal jeg spise opp sola!»</p>
+<p>«Sola er varm,» sa Bernhard. «Du kommer til å brenne deg på tunga.»</p>
+<p>Professoren tenkte seg om.<br>«Da tar jeg den med is til,» sa han.</p>
+<p>Supersleiva 9000 senket den store skjeen.<br>Den skulle akkurat ta en jafs av månen…</p>
+<p>…da Eva fikk en plan.</p>
+<p>«Bernhard!» hvisket hun. «Ser du knappen der det står IKKE TRYKK?»</p>
+<p>«Ja.»</p>
+<p>«Kan du treffe den?»</p>
+<p>Bernhard så ned.<br>Fotballen var jo i Australia.<br>Men han hadde noe annet.</p>
+<p>Bøtta.</p>
+
+<div class="flip" id="flip">
+  <h3>FLIPP-O-RAMA!</h3>
+  <p>Trykk på knappen fort, mange ganger etter hverandre!</p>
+  <div class="frames">
+    <svg viewBox="0 0 400 260" role="img" aria-label="Bernhard tar fart for å sparke bøtta">
+      <rect width="400" height="260" fill="var(--sky)"/>
+      <path d="M0 220 Q200 205 400 220 L400 260 L0 260Z" fill="var(--moon)"/>
+      <ellipse cx="320" cy="110" rx="48" ry="60" fill="#C0C6D2" stroke="#1F2A44" stroke-width="5"/>
+      <rect x="296" y="140" width="48" height="16" rx="4" fill="var(--yellow)" stroke="#1F2A44" stroke-width="3"/>
+      <g transform="translate(110 120)">
+        <circle cx="0" cy="0" r="24" fill="var(--skin)" stroke="#1F2A44" stroke-width="4"/>
+        <circle cx="-8" cy="-2" r="3" fill="#1F2A44"/><circle cx="8" cy="-2" r="3" fill="#1F2A44"/>
+        <path d="M-8 10 h16" stroke="#1F2A44" stroke-width="4"/>
+        <rect x="-20" y="26" width="40" height="50" rx="10" fill="var(--blue)" stroke="#1F2A44" stroke-width="4"/>
+        <path d="M-10 76 L-14 100 M10 76 L-20 92" stroke="#1F2A44" stroke-width="6" stroke-linecap="round"/>
+      </g>
+      <path d="M78 205 L110 205 L104 230 L84 230Z" fill="#9AA0AF" stroke="#1F2A44" stroke-width="4"/>
+      <text x="30" y="50" font-size="30" style="fill:#fff">KLAR…</text>
+    </svg>
+    <svg viewBox="0 0 400 260" role="img" aria-label="Bøtta treffer knappen og roboten blir til en dansende brødrister">
+      <rect width="400" height="260" fill="var(--sky)"/>
+      <path d="M0 220 Q200 205 400 220 L400 260 L0 260Z" fill="var(--moon)"/>
+      <g transform="translate(320 120) rotate(12)">
+        <rect x="-45" y="-40" width="90" height="70" rx="14" fill="#C0C6D2" stroke="#1F2A44" stroke-width="5"/>
+        <rect x="-28" y="-55" width="20" height="25" fill="var(--rocket)" stroke="#1F2A44" stroke-width="3"/>
+        <rect x="8" y="-55" width="20" height="25" fill="var(--rocket)" stroke="#1F2A44" stroke-width="3"/>
+        <path d="M-25 30 L-40 70 M25 30 L45 60 L60 62" stroke="#1F2A44" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <text x="-38" y="5" font-size="22">PLING!</text>
+      </g>
+      <g transform="translate(110 120)">
+        <circle cx="0" cy="0" r="24" fill="var(--skin)" stroke="#1F2A44" stroke-width="4"/>
+        <circle cx="-8" cy="-2" r="3" fill="#1F2A44"/><circle cx="8" cy="-2" r="3" fill="#1F2A44"/>
+        <path d="M-10 8 Q0 18 10 8" stroke="#1F2A44" stroke-width="4" fill="#fff"/>
+        <rect x="-20" y="26" width="40" height="50" rx="10" fill="var(--blue)" stroke="#1F2A44" stroke-width="4"/>
+        <path d="M-10 76 L-14 100 M10 76 L45 70" stroke="#1F2A44" stroke-width="6" stroke-linecap="round"/>
+      </g>
+      <path d="M150 170 Q220 110 280 130" stroke="#fff" stroke-width="3" stroke-dasharray="8 8" fill="none"/>
+      <path d="M266 118 L290 126 L284 146 L264 140Z" fill="#9AA0AF" stroke="#1F2A44" stroke-width="4"/>
+      <text x="140" y="60" font-size="44" style="fill:var(--yellow);stroke:#1F2A44;stroke-width:2">KLONK!</text>
+    </svg>
+  </div>
+  <button type="button" id="flipBtn" aria-pressed="false">FLIPP!</button>
+</div>
+
+<p>Bøtta traff knappen midt i blinken.</p>
+
+<span class="boom">BZZZZT!</span>
+
+<p>Supersleiva 9000 begynte å riste.<br>Så begynte den å blinke.<br>Så ble den til en brødrister som danset disko.</p>
+<p>Professor Pølsehjerne ble skutt ut av brødristeren som en ristet brødskive.</p>
+
+<span class="boom small">PLING!</span>
+
+<p>Han fløy helt bort til Pluto.</p>
+<p>«Jeg kommer tilbake!» ropte han. «Og da tar jeg med SAUS!»</p>
+<p>«Det sier de alltid,» sa Eva.</p>
+
+<h2>Kapittel 6: Hjem til middag</h2>
+
+<p>Klumpen var så glad at han gråt.<br>Med alle tre øynene.<br>Det ble en liten sølepytt.</p>
+<p>«Dere har reddet månen!» sa han. «Her er en medalje.»</p>
+<p>Medaljen var laget av is med karamellsmak.<br>Bernhard spiste den før de var tilbake i raketten.</p>
+<p>Men så var det et problem til.</p>
+<p>«Hvordan kommer vi hjem?» sa Bernhard. «Det er ikke mer brus.»</p>
+<p>Klumpen ga dem en ny boks bakte bønner.</p>
+<p>Bernhard så på Eva.<br>Eva så på Bernhard.</p>
+<p>«Din tur,» sa Bernhard.</p>
+
+<span class="boom red">PRRRRRRRRRRRRRRRT!</span>
+
+<p>Superesken 3000 landet midt i hagen.<br>Rett i blomsterbedet.<br>Katten til naboen så på dem.<br>Den var fortsatt sur.</p>
+<p>Døra gikk opp.</p>
+<p>«Hvor har dere vært?» ble det ropt.</p>
+<p>«På månen,» sa Bernhard.</p>
+<p>«Ok. Vask hendene. Det er fiskekaker.»</p>
+
+<figure>
+<div class="pic">
+<svg viewBox="0 0 400 260" role="img" aria-label="Månen på nattehimmelen med en liten bit borte">
+  <rect width="400" height="260" fill="var(--sky)"/>
+  <g fill="#fff"><circle cx="40" cy="40" r="2"/><circle cx="120" cy="25" r="2.5"/><circle cx="350" cy="200" r="2"/><circle cx="60" cy="200" r="1.5"/><circle cx="330" cy="40" r="2"/></g>
+  <circle cx="200" cy="120" r="80" fill="var(--moon)"/>
+  <circle cx="275" cy="80" r="22" fill="var(--sky)"/><circle cx="262" cy="60" r="12" fill="var(--sky)"/><circle cx="285" cy="102" r="14" fill="var(--sky)"/>
+  <circle cx="170" cy="100" r="14" fill="var(--moonDark)"/><circle cx="215" cy="150" r="10" fill="var(--moonDark)"/><circle cx="160" cy="160" r="7" fill="var(--moonDark)"/>
+  <text x="290" y="45" font-size="22" style="fill:#fff">← jafs</text>
+</svg>
+</div>
+<figcaption>Se på månen i kveld. Ser du hvor Professor Pølsehjerne tok en jafs?</figcaption>
+</figure>
+
+<p>Den kvelden lå Bernhard i senga og så ut av vinduet.</p>
+<p>Månen var der.<br>Nesten hel.<br>Bare en bitteliten bit manglet.</p>
+<p>Og langt, langt borte, i Australia, landet en fotball.</p>
+
+<p class="end">SLUTT</p>
+<p class="next">(…eller er det det? Neste bok: <b>Bernhard og Eva og Sausen fra Pluto</b>)</p>
+
+</main>
+<script>
+const flip = document.getElementById('flip');
+const btn = document.getElementById('flipBtn');
+btn.addEventListener('click', () => {
+  const on = flip.classList.toggle('on');
+  btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+});
+</script>
+</body>
+</html>
