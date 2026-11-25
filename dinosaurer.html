@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bernhard og Eva og Tidsmaskinen: Dinosaurene</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Bangers&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFCFE; --line:#C9DDF2; --margin:#E8505B; --ink:#1F2A44;
+  --yellow:#FFD23F; --green:#5FB86A; --greenDark:#3E8A4A; --leaf:#8BCB6B;
+  --red:#E8505B; --blue:#4A90D9; --skin:#F4C9A0; --hair1:#7A4B22; --hair2:#E9B949;
+  --tint:color-mix(in srgb, #FFD23F 15%, #FBFCFE);
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#141E36; --line:#22325A; --margin:#B23A45; --ink:#EEF2FA;
+    --tint:color-mix(in srgb, #FFD23F 12%, #141E36); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#141E36; --line:#22325A; --margin:#B23A45; --ink:#EEF2FA;
+  --tint:color-mix(in srgb, #FFD23F 12%, #141E36); color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{
+  margin:0; color:var(--ink); background-color:var(--paper);
+  background-image:
+    linear-gradient(to right, transparent 0 44px, var(--margin) 44px 46px, transparent 46px),
+    repeating-linear-gradient(to bottom, transparent 0 41px, var(--line) 41px 43px);
+  font-family:"Andika","Trebuchet MS",system-ui,sans-serif;
+  font-size:clamp(21px,2.6vw,26px); line-height:1.75;
+}
+main{max-width:36rem; margin:0 auto; padding:2rem 1.25rem 5rem 3.75rem}
+p{margin:0 0 1.6em}
+h1,h2,.boom{font-family:"Bangers","Impact",sans-serif; font-weight:400; letter-spacing:.03em; line-height:1}
+h1{font-size:clamp(3rem,11vw,5rem); margin:.5rem 0 1rem; transform:rotate(-3deg)}
+h1 span{display:block; font-size:.42em; color:var(--margin); margin-bottom:.3rem}
+h1 small{display:block; font-size:.4em; margin-top:.4rem; color:var(--greenDark)}
+h2{font-size:clamp(2rem,6vw,2.8rem); margin:4.5rem 0 1.5rem; border-bottom:4px solid var(--ink); display:inline-block; padding-bottom:.2rem}
+.by{font-size:.8em; opacity:.8; margin-bottom:2.5rem}
+.boom{display:block; text-align:center; font-size:clamp(3rem,13vw,6rem); color:var(--yellow); -webkit-text-stroke:3px var(--ink); paint-order:stroke fill; margin:2.5rem 0; transform:rotate(-4deg)}
+.boom.small{font-size:clamp(2.2rem,8vw,3.6rem); transform:rotate(3deg); color:var(--green)}
+.boom.red{color:var(--red)}
+figure{margin:2.5rem 0}
+figure svg{width:100%; height:auto; display:block}
+figcaption{text-align:center; font-size:.8em; font-style:italic; margin-top:.4rem}
+.pic{border:4px solid var(--ink); border-radius:6px 14px 8px 18px; overflow:hidden; background:var(--paper)}
+.fact{border-left:8px solid var(--yellow); padding:.8rem 1rem; margin:2rem 0; background:var(--tint)}
+.fact b{font-family:"Bangers",sans-serif; font-weight:400; font-size:1.3em; letter-spacing:.04em; display:block}
+.list{border:3px dashed var(--ink); padding:1.2rem 1.2rem .4rem; margin:2rem 0; transform:rotate(-1deg); background:var(--paper)}
+.list h3{font-family:"Bangers",sans-serif; font-weight:400; font-size:1.6em; margin:0 0 .5rem}
+.list ul{margin:0 0 1rem; padding-left:1.2rem}
+.list li{margin-bottom:.4rem}
+.flip{border:5px solid var(--ink); border-radius:10px; padding:1rem; margin:3rem 0; text-align:center; background:var(--paper)}
+.flip h3{font-family:"Bangers",sans-serif; font-weight:400; font-size:2.4em; margin:0; color:var(--margin)}
+.flip p{font-size:.85em; margin:.2rem 0 1rem}
+.flip .frames{position:relative}
+.flip .frames svg{width:100%; height:auto; display:block}
+.flip .frames svg + svg{position:absolute; inset:0; visibility:hidden}
+.flip.on .frames svg:first-child{visibility:hidden}
+.flip.on .frames svg + svg{visibility:visible}
+.flip button{font-family:"Bangers",sans-serif; font-size:2rem; letter-spacing:.05em; margin-top:1rem; padding:.4rem 2.2rem; border:4px solid var(--ink); border-radius:999px; background:var(--yellow); color:#1F2A44; cursor:pointer; box-shadow:4px 4px 0 var(--ink)}
+.flip button:active{transform:translate(3px,3px); box-shadow:1px 1px 0 var(--ink)}
+.flip button:focus-visible{outline:4px solid var(--blue); outline-offset:4px}
+.end{text-align:center; font-family:"Bangers",sans-serif; font-size:clamp(2.6rem,10vw,4.5rem); margin:4rem 0 1rem}
+.next{text-align:center; font-size:.85em}
+svg text{font-family:"Bangers",sans-serif}
+@media (max-width:480px){ main{padding-left:3.4rem; padding-right:1rem} }
+</style>
+</head>
+<body>
+<main>
+
+<h1><span>Bernhard og Eva og</span>TIDSMASKINEN<small>Bok 1: Dinosaurene</small></h1>
+<p class="by">En ny serie. Med ekte fakta. Og litt bæsj.</p>
+
+<h2>Kapittel 1: Vaskemaskinen</h2>
+
+<p>Det var lørdag.<br>Bernhard og Eva var i vaskerommet.<br>De skulle egentlig rydde.</p>
+<p>Det gjorde de ikke.</p>
+<p>«Bernhard,» sa Eva. «Har du sett at vaskemaskinen har en knapp som ingen har trykket på?»</p>
+<p>Bernhard så.<br>Det var en liten, rød knapp.<br>Det sto TIDSREISE på den.</p>
+<p>«Den har alltid vært der,» sa Bernhard.</p>
+<p>«Og ingen har TRYKKET på den?» sa Eva.</p>
+<p>De så på hverandre.<br>Så krøp de inn i vaskemaskinen.<br>(Det var trangt. Det luktet sokk.)</p>
+
+<figure>
+<div class="pic">
+<svg viewBox="0 0 400 300" role="img" aria-label="En vaskemaskin med en hjulknapp der det står år, og en rød knapp der det står tidsreise">
+  <rect width="400" height="300" fill="var(--paper)"/>
+  <rect x="110" y="40" width="180" height="230" rx="14" fill="#fff" stroke="#1F2A44" stroke-width="5"/>
+  <rect x="110" y="40" width="180" height="50" rx="14" fill="#E9EEF5" stroke="#1F2A44" stroke-width="5"/>
+  <circle cx="200" cy="175" r="62" fill="#BFE3FF" stroke="#1F2A44" stroke-width="6"/>
+  <circle cx="200" cy="175" r="44" fill="#9FD3F5" stroke="#1F2A44" stroke-width="3"/>
+  <circle cx="185" cy="170" r="14" fill="var(--skin)" stroke="#1F2A44" stroke-width="3"/>
+  <circle cx="215" cy="178" r="14" fill="var(--skin)" stroke="#1F2A44" stroke-width="3"/>
+  <circle cx="181" cy="169" r="2.5" fill="#1F2A44"/><circle cx="189" cy="169" r="2.5" fill="#1F2A44"/>
+  <circle cx="211" cy="177" r="2.5" fill="#1F2A44"/><circle cx="219" cy="177" r="2.5" fill="#1F2A44"/>
+  <circle cx="150" cy="65" r="14" fill="#fff" stroke="#1F2A44" stroke-width="3"/>
+  <line x1="150" y1="65" x2="158" y2="56" stroke="#1F2A44" stroke-width="3"/>
+  <circle cx="250" cy="65" r="11" fill="var(--red)" stroke="#1F2A44" stroke-width="3"/>
+  <text x="20" y="60" font-size="20" fill="var(--ink)">40 GRADER</text>
+  <text x="20" y="82" font-size="20" fill="var(--ink)">66 MILL. ÅR →</text>
+  <text x="300" y="60" font-size="18" fill="var(--ink)">← TIDS-</text>
+  <text x="300" y="80" font-size="18" fill="var(--ink)">REISE</text>
+  <path d="M300 280 q10 -12 20 0 M80 280 q10 -12 20 0" stroke="#1F2A44" stroke-width="3" fill="none"/>
+</svg>
+</div>
+<figcaption>Tidsmaskinen. Den vasker også ull.</figcaption>
+</figure>
+
+<p>Eva vridde på hjulet.<br>Det sto ikke 40 grader.<br>Det sto 66 MILLIONER ÅR TILBAKE.</p>
+<p>Bernhard trykket på den røde knappen.</p>
+
+<span class="boom">SVUSJ-SVUSJ-SVUSJ!</span>
+
+<p>Vaskemaskinen snurret.<br>Og snurret.<br>Og sentrifugerte så hardt at Bernhard fikk sokken til Eva i munnen.</p>
+
+<span class="boom small">PLOPP!</span>
+
+<h2>Kapittel 2: Hvor er vi?</h2>
+
+<p>De krøp ut.<br>Det var varmt.<br>Det var grønt.<br>Det var bregner så store som hus.</p>
+<p>Og over trærne, langt oppe, kom et hode.<br>Et hode på en hals.<br>En hals som var så lang at den nesten ikke tok slutt.</p>
+
+<figure>
+<div class="pic">
+<svg viewBox="0 0 400 300" role="img" aria-label="En jungel med en langhalset dinosaur som stikker hodet over trærne og en vulkan i bakgrunnen">
+  <rect width="400" height="300" fill="#BFE8FF"/>
+  <path d="M260 210 L310 120 L360 210Z" fill="#8C6A4F" stroke="#1F2A44" stroke-width="3"/>
+  <path d="M300 120 q-5 -30 10 -50 q10 20 0 50" fill="#BBB" opacity=".8"/>
+  <path d="M0 230 Q200 210 400 232 L400 300 L0 300Z" fill="var(--leaf)"/>
+  <!-- long neck dino -->
+  <path d="M110 250 Q100 200 140 190 Q200 180 220 210 L215 250Z" fill="#7FB3A0" stroke="#1F2A44" stroke-width="4"/>
+  <path d="M190 195 Q190 120 170 70 Q165 50 185 45 Q205 45 200 62 Q190 70 200 120 Q210 170 215 200Z" fill="#7FB3A0" stroke="#1F2A44" stroke-width="4"/>
+  <circle cx="190" cy="52" r="3" fill="#1F2A44"/>
+  <path d="M188 60 q6 3 10 0" stroke="#1F2A44" stroke-width="2" fill="none"/>
+  <path d="M125 250 v25 M150 250 v25 M195 250 v25 M210 250 v25" stroke="#1F2A44" stroke-width="10" stroke-linecap="round"/>
+  <path d="M110 230 Q70 240 40 225" stroke="#1F2A44" stroke-width="4" fill="none"/>
+  <!-- ferns -->
+  <g fill="var(--green)" stroke="#1F2A44" stroke-width="2">
+    <path d="M30 260 Q20 200 60 180 Q50 220 70 260Z"/>
+    <path d="M330 265 Q330 200 370 190 Q355 230 365 265Z"/>
+  </g>
+  <!-- tiny kids -->
+  <circle cx="250" cy="250" r="8" fill="var(--skin)" stroke="#1F2A44" stroke-width="2"/>
+  <circle cx="270" cy="252" r="8" fill="var(--skin)" stroke="#1F2A44" stroke-width="2"/>
+  <text x="232" y="232" font-size="16" fill="#1F2A44">OI.</text>
+</svg>
+</div>
+<figcaption>Han var veldig stor. De var veldig små.</figcaption>
+</figure>
+
+<p>«Er det en … giraff?» hvisket Bernhard.</p>
+<p>«Nei,» sa Eva. «Det er en dinosaur. Vi har reist 66 millioner år tilbake i tid!»</p>
+<p>Dinosauren så ned på dem.<br>Så nøs den.</p>
+
+<span class="boom small">ATSJOOO!</span>
+
+<p>Nå var de grønne fra topp til tå.</p>
+<p>«Den spiser bare planter,» sa Eva og tørket seg i ansiktet. «Den er snill.»</p>
+<p>«Den er snørrete,» sa Bernhard.</p>
+
+<div class="fact">
+  <b>Ekte fakta!</b>
+  De største dinosaurene var langhalser. De var like lange som tre busser etter hverandre, og de spiste bare planter. Hele dagen. Akkurat som en ku. Bare mye, mye større.
+</div>
+
+<h2>Kapittel 3: Trikse</h2>
+
+<p>Plutselig kjente Bernhard at noe dyttet ham i ryggen.</p>
+<p>Han snudde seg.<br>Der sto en liten dinosaur.<br>Den hadde tre horn, en stor krage og så veldig glad ut.</p>
+
+<figure>
+<div class="pic">
+<svg viewBox="0 0 400 260" role="img" aria-label="En liten, glad dinosaur med tre horn og en stor krage rundt hodet">
+  <rect width="400" height="260" fill="#BFE8FF"/>
+  <path d="M0 210 Q200 195 400 212 L400 260 L0 260Z" fill="var(--leaf)"/>
+  <g transform="translate(200 150)">
+    <ellipse cx="20" cy="15" rx="80" ry="45" fill="#F2A65A" stroke="#1F2A44" stroke-width="4"/>
+    <path d="M95 10 Q130 20 140 0" stroke="#1F2A44" stroke-width="4" fill="#F2A65A"/>
+    <path d="M-30 50 v28 M0 55 v26 M45 55 v26 M75 50 v28" stroke="#1F2A44" stroke-width="12" stroke-linecap="round"/>
+    <path d="M-60 -50 Q-20 -60 -10 -10 Q-40 20 -75 0Z" fill="#E86B5B" stroke="#1F2A44" stroke-width="4"/>
+    <circle cx="-62" cy="-45" r="5" fill="var(--yellow)"/><circle cx="-30" cy="-50" r="5" fill="var(--yellow)"/><circle cx="-14" cy="-24" r="5" fill="var(--yellow)"/>
+    <ellipse cx="-70" cy="5" rx="34" ry="26" fill="#F2A65A" stroke="#1F2A44" stroke-width="4"/>
+    <path d="M-80 -14 L-88 -40 L-72 -18 M-60 -16 L-56 -42 L-50 -16" fill="#fff" stroke="#1F2A44" stroke-width="3"/>
+    <path d="M-100 8 L-118 0 L-100 0" fill="#fff" stroke="#1F2A44" stroke-width="3"/>
+    <circle cx="-74" cy="0" r="5" fill="#1F2A44"/><circle cx="-72" cy="-2" r="1.5" fill="#fff"/>
+    <path d="M-92 18 Q-80 26 -66 18" stroke="#1F2A44" stroke-width="3" fill="none"/>
+  </g>
+  <text x="250" y="70" font-size="26" fill="#1F2A44">♥ ♥ ♥</text>
+</svg>
+</div>
+<figcaption>Trikse. Hun vil være med på alt.</figcaption>
+</figure>
+
+<p>«Det er en baby-triceratops!» sa Eva.</p>
+<p>«Hun heter Trikse,» sa Bernhard.</p>
+<p>«Hvordan vet du det?»</p>
+<p>«Hun ser ut som en Trikse.»</p>
+<p>Det gjorde hun.</p>
+<p>Trikse slikket Bernhard i ansiktet.<br>Så slikket hun Eva.<br>Så slikket hun en stein, bare for sikkerhets skyld.</p>
+
+<div class="fact">
+  <b>Ekte fakta!</b>
+  Triceratops betyr «ansikt med tre horn». Den spiste planter, og kragen rundt hodet var laget av bein. Kanskje brukte den kragen til å vise seg fram. Litt som en påfugl. Bare tøffere.
+</div>
+
+<p>Bernhard hadde med seg fotballen sin. (Selvfølgelig.)<br>Han sparket den bort til Trikse.<br>Trikse dyttet den tilbake med hornene.</p>
+<p>«Hun er god!» sa Bernhard.</p>
+<p>De spilte i en hel time.<br>Trikse vant 4–3.<br>Hun juksa litt. Hun har tre horn.</p>
+
+<h2>Kapittel 4: STAMP. STAMP. STAMP.</h2>
+
+<p>Så ristet bakken.</p>
+
+<span class="boom red">STAMP! STAMP! STAMP!</span>
+
+<p>Alle fuglene fløy.<br>Alle insektene gjemte seg.<br>Trikse gjemte seg bak Bernhard. (Hun var større enn ham. Det funka ikke helt.)</p>
+<p>Ut av jungelen kom den største, sinteste og mest tannete dinosauren i hele verden.</p>
+
+<figure>
+<div class="pic">
+<svg viewBox="0 0 400 300" role="img" aria-label="En stor T. rex med kjempestort hode og bittesmå armer">
+  <rect width="400" height="300" fill="#BFE8FF"/>
+  <path d="M0 250 Q200 235 400 252 L400 300 L0 300Z" fill="var(--leaf)"/>
+  <g transform="translate(210 160)">
+    <path d="M-40 10 Q-20 -40 40 -30 Q80 -20 70 30 Q60 60 20 60 Q-20 60 -40 10Z" fill="var(--greenDark)" stroke="#1F2A44" stroke-width="5"/>
+    <path d="M60 20 Q150 30 180 70 Q120 60 60 45Z" fill="var(--greenDark)" stroke="#1F2A44" stroke-width="5"/>
+    <path d="M0 60 L-5 95 L-25 95 M40 58 L45 95 L25 95" stroke="#1F2A44" stroke-width="12" stroke-linecap="round" fill="none"/>
+    <path d="M-60 -60 Q-10 -110 40 -70 Q50 -50 30 -40 Q-20 -25 -70 -30 Q-110 -32 -110 -55 Q-100 -70 -60 -60Z" fill="var(--greenDark)" stroke="#1F2A44" stroke-width="5"/>
+    <path d="M-110 -45 Q-60 -35 -10 -45" stroke="#1F2A44" stroke-width="4" fill="none"/>
+    <path d="M-100 -46 l5 9 l5 -9 l5 9 l5 -9 l5 9 l5 -9 l5 9 l5 -9 l5 9 l5 -9" stroke="#fff" stroke-width="3" fill="none"/>
+    <circle cx="-20" cy="-70" r="8" fill="#fff" stroke="#1F2A44" stroke-width="3"/><circle cx="-18" cy="-70" r="4" fill="#1F2A44"/>
+    <path d="M-34 -84 l20 6" stroke="#1F2A44" stroke-width="4"/>
+    <path d="M-20 -8 l-14 6 M-14 4 l-12 8" stroke="#1F2A44" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <text x="40" y="200" font-size="18" fill="#1F2A44">armer →</text>
+  <text x="10" y="40" font-size="30" fill="#1F2A44">ROOOAAARR!</text>
+</svg>
+</div>
+<figcaption>T. rex. Stort hode. Mange tenner. Bittesmå armer.</figcaption>
+</figure>
+
+<p>«T. REX!» ropte Eva.</p>
+<p>T. rex brølte så høyt at Bernhards hår blåste bakover.<br>Pusten luktet råttent kjøtt og gammel tannbørste.<br>(Den hadde aldri pusset tennene. Ikke en gang.)</p>
+
+<div class="fact">
+  <b>Ekte fakta!</b>
+  T. rex hadde det kraftigste bittet av alle dyr som har levd på land. Tennene var like store som bananer. Men armene var så korte at den ikke kunne klø seg på nesa.
+</div>
+
+<p>T. rex tok et steg mot dem.<br>Bernhard tok et steg bakover.<br>Han tråkket på fotballen.</p>
+<p>Og da fikk han en idé.</p>
+<p>«Eva,» hvisket han. «Hvor lange armer trenger man for å være keeper?»</p>
+<p>Eva så på de bittesmå armene.<br>Så smilte hun.</p>
+<p>«Lengre enn det der,» sa hun.</p>
+<p>Eva stilte seg opp mellom to trær og pekte.<br>«HEI, T. REX! Du står i mål!»</p>
+<p>T. rex visste ikke hva mål var.<br>Men den visste at den ikke likte å bli kommandert.<br>Så den stilte seg mellom trærne for å krangle.</p>
+<p>Bernhard tok fart.</p>
+
+<div class="flip" id="flip">
+  <h3>FLIPP-O-RAMA!</h3>
+  <p>Trykk på knappen fort, mange ganger!</p>
+  <div class="frames">
+    <svg viewBox="0 0 400 260" role="img" aria-label="Bernhard tar fart mot ballen, T. rex står i mål mellom to trær">
+      <rect width="400" height="260" fill="#BFE8FF"/>
+      <path d="M0 220 Q200 208 400 222 L400 260 L0 260Z" fill="var(--leaf)"/>
+      <rect x="250" y="70" width="14" height="150" fill="#8C6A4F" stroke="#1F2A44" stroke-width="3"/>
+      <rect x="370" y="70" width="14" height="150" fill="#8C6A4F" stroke="#1F2A44" stroke-width="3"/>
+      <circle cx="257" cy="70" r="24" fill="var(--green)" stroke="#1F2A44" stroke-width="3"/><circle cx="377" cy="70" r="24" fill="var(--green)" stroke="#1F2A44" stroke-width="3"/>
+      <g transform="translate(318 150)">
+        <ellipse cx="0" cy="10" rx="30" ry="36" fill="var(--greenDark)" stroke="#1F2A44" stroke-width="4"/>
+        <ellipse cx="-10" cy="-38" rx="32" ry="20" fill="var(--greenDark)" stroke="#1F2A44" stroke-width="4"/>
+        <circle cx="-14" cy="-44" r="4" fill="#1F2A44"/>
+        <path d="M-40 -32 l5 6 l5 -6 l5 6 l5 -6 l5 6" stroke="#fff" stroke-width="2" fill="none"/>
+        <path d="M-26 0 l-10 -4 M-26 10 l-10 2" stroke="#1F2A44" stroke-width="4" stroke-linecap="round"/>
+        <path d="M-10 44 v24 M12 44 v24" stroke="#1F2A44" stroke-width="10" stroke-linecap="round"/>
+      </g>
+      <g transform="translate(90 150)">
+        <circle cx="0" cy="0" r="20" fill="var(--skin)" stroke="#1F2A44" stroke-width="3"/>
+        <path d="M-20 -6 Q-14 -24 0 -22 Q16 -24 20 -6 Q10 -14 0 -12 Q-10 -14 -20 -6Z" fill="var(--hair1)" stroke="#1F2A44" stroke-width="2"/>
+        <circle cx="-6" cy="0" r="2.5" fill="#1F2A44"/><circle cx="6" cy="0" r="2.5" fill="#1F2A44"/>
+        <rect x="-16" y="20" width="32" height="38" rx="8" fill="var(--blue)" stroke="#1F2A44" stroke-width="3"/>
+        <path d="M-8 58 L-20 78 M8 58 L22 70" stroke="#1F2A44" stroke-width="6" stroke-linecap="round"/>
+      </g>
+      <circle cx="128" cy="212" r="12" fill="#fff" stroke="#1F2A44" stroke-width="3"/>
+      <text x="20" y="40" font-size="28" fill="#1F2A44">KLAR…</text>
+    </svg>
+    <svg viewBox="0 0 400 260" role="img" aria-label="Ballen suser forbi de korte armene til T. rex og i mål">
+      <rect width="400" height="260" fill="#BFE8FF"/>
+      <path d="M0 220 Q200 208 400 222 L400 260 L0 260Z" fill="var(--leaf)"/>
+      <rect x="250" y="70" width="14" height="150" fill="#8C6A4F" stroke="#1F2A44" stroke-width="3"/>
+      <rect x="370" y="70" width="14" height="150" fill="#8C6A4F" stroke="#1F2A44" stroke-width="3"/>
+      <circle cx="257" cy="70" r="24" fill="var(--green)" stroke="#1F2A44" stroke-width="3"/><circle cx="377" cy="70" r="24" fill="var(--green)" stroke="#1F2A44" stroke-width="3"/>
+      <g transform="translate(300 160) rotate(-20)">
+        <ellipse cx="0" cy="10" rx="30" ry="36" fill="var(--greenDark)" stroke="#1F2A44" stroke-width="4"/>
+        <ellipse cx="-10" cy="-38" rx="32" ry="20" fill="var(--greenDark)" stroke="#1F2A44" stroke-width="4"/>
+        <path d="M-18 -46 l6 6 M-12 -46 l-6 6" stroke="#1F2A44" stroke-width="3"/>
+        <path d="M-26 0 l-14 -10 M-26 10 l-14 -4" stroke="#1F2A44" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <circle cx="350" cy="110" r="12" fill="#fff" stroke="#1F2A44" stroke-width="3"/>
+      <path d="M130 200 Q240 120 338 112" stroke="#1F2A44" stroke-width="3" stroke-dasharray="7 6" fill="none"/>
+      <g transform="translate(90 150)">
+        <circle cx="0" cy="0" r="20" fill="var(--skin)" stroke="#1F2A44" stroke-width="3"/>
+        <path d="M-20 -6 Q-14 -24 0 -22 Q16 -24 20 -6 Q10 -14 0 -12 Q-10 -14 -20 -6Z" fill="var(--hair1)" stroke="#1F2A44" stroke-width="2"/>
+        <path d="M-7 6 Q0 14 7 6" stroke="#1F2A44" stroke-width="3" fill="#fff"/>
+        <rect x="-16" y="20" width="32" height="38" rx="8" fill="var(--blue)" stroke="#1F2A44" stroke-width="3"/>
+        <path d="M-16 26 L-34 4 M16 26 L34 4" stroke="#1F2A44" stroke-width="5" stroke-linecap="round"/>
+        <path d="M-8 58 L-10 80 M8 58 L10 80" stroke="#1F2A44" stroke-width="6" stroke-linecap="round"/>
+      </g>
+      <text x="140" y="60" font-size="44" fill="var(--yellow)" stroke="#1F2A44" stroke-width="2">MÅÅÅL!</text>
+    </svg>
+  </div>
+  <button type="button" id="flipBtn" aria-pressed="false">FLIPP!</button>
+</div>
+
+<p>Ballen suste av gårde.<br>T. rex strakk ut armene.<br>Armene rakk omtrent til magen.</p>
+
+<span class="boom">MÅÅÅÅL!</span>
+
+<p>T. rex ble så fornærmet at den satte seg ned i gjørma og surmulte.<br>Den surmulte så mye at den glemte at den skulle spise dem.</p>
+<p>«Løp!» sa Eva.</p>
+
+<h2>Kapittel 5: Hjem</h2>
+
+<p>De løp tilbake til vaskemaskinen.<br>Trikse løp etter.<br>Hun ville være med.</p>
+<p>«Hun får ikke plass,» sa Eva.</p>
+<p>«Hun kan bo på rommet mitt,» sa Bernhard.</p>
+<p>«Hun er like stor som en bil.»</p>
+<p>«Jeg kan rydde litt.»</p>
+<p>Men Eva så opp på himmelen.<br>Langt, langt oppe var det et lysende punkt.<br>Det ble større.</p>
+
+<div class="fact">
+  <b>Ekte fakta!</b>
+  For 66 millioner år siden traff en kjempestor stein fra verdensrommet jorda. Den kalles en asteroide. Etter det døde nesten alle dinosaurene ut. Derfor har ingen mennesker noen gang sett en ekte, levende T. rex.
+</div>
+
+<p>«Trikse,» sa Bernhard. «Du må gjemme deg i en hule. En dyp en. Med masse mat.»</p>
+<p>Trikse så på ham.<br>Så slikket hun ham en siste gang og travet inn i jungelen.</p>
+<p>Bernhard snufset litt.<br>Det var bare fordi han fortsatt hadde snørr i ansiktet. Sa han.</p>
+<p>De krøp inn i vaskemaskinen.<br>Eva vridde hjulet til I DAG.<br>Bernhard trykket på knappen.</p>
+
+<span class="boom">SVUSJ-SVUSJ-SVUSJ!</span>
+
+<p>De trillet ut på gulvet i vaskerommet.<br>Grønne. Gjørmete. Og luktet T. rex.</p>
+<p>Døra gikk opp.</p>
+<p>«Har dere ryddet vaskerommet?» ble det ropt.</p>
+<p>«Nei,» sa Bernhard. «Vi har vært hos dinosaurene.»</p>
+<p>«Ok. Ta av dere skoene før dere går inn.»</p>
+
+<h2>Kapittel 6: Det rare i lomma</h2>
+
+<p>Den kvelden fant Bernhard noe i lomma.<br>Det var brunt.<br>Det var hardt som stein.<br>Det så ut som en pølse.</p>
+<p>«Eva,» sa han. «Hva er dette?»</p>
+<p>Eva så på den lenge.<br>Så begynte hun å le så hun nesten ramlet av stolen.</p>
+<p>«Det er bæsj!» sa hun. «66 millioner år gammel dinosaurbæsj!»</p>
+
+<div class="fact">
+  <b>Ekte fakta!</b>
+  Det finnes ekte, forsteinet dinosaurbæsj. Den heter <b style="display:inline;font-family:inherit;font-size:1em">koprolitt</b>. Forskere studerer den for å finne ut hva dinosaurene spiste. Noen av dem har det som jobb. Hele dagen. Med bæsj.
+</div>
+
+<p>Bernhard tok den med på skolen neste dag.<br>Han fikk toppkarakter i naturfag.</p>
+<p>Og ute i hagen satt nabohøna og så på ham.<br>Lenge.<br>Med et veldig rart blikk.</p>
+
+<div class="fact">
+  <b>Ekte fakta!</b>
+  Fugler stammer fra dinosaurene. Høna er faktisk i slekt med T. rex. Så neste gang en høne ser sint på deg: Vær forsiktig.
+</div>
+
+<figure>
+<div class="pic">
+<svg viewBox="0 0 400 240" role="img" aria-label="En høne som ser mistenksomt på leseren, med skyggen av en T. rex bak seg">
+  <rect width="400" height="240" fill="#BFE8FF"/>
+  <path d="M0 190 Q200 180 400 192 L400 240 L0 240Z" fill="var(--leaf)"/>
+  <path d="M150 190 Q160 60 260 70 Q320 80 310 120 L250 130 Q260 190 230 190Z" fill="#1F2A44" opacity=".15"/>
+  <g transform="translate(200 140)">
+    <ellipse cx="0" cy="10" rx="40" ry="32" fill="#fff" stroke="#1F2A44" stroke-width="4"/>
+    <path d="M30 0 Q60 -20 55 10 Q50 25 35 20" fill="#fff" stroke="#1F2A44" stroke-width="4"/>
+    <circle cx="-30" cy="-25" r="20" fill="#fff" stroke="#1F2A44" stroke-width="4"/>
+    <path d="M-38 -45 q4 -10 8 0 q4 -10 8 0 q4 -10 8 0" fill="var(--red)" stroke="#1F2A44" stroke-width="3"/>
+    <path d="M-50 -24 L-64 -20 L-50 -16Z" fill="var(--yellow)" stroke="#1F2A44" stroke-width="3"/>
+    <path d="M-46 -10 q4 10 8 0" fill="var(--red)" stroke="#1F2A44" stroke-width="2"/>
+    <circle cx="-34" cy="-28" r="4" fill="#1F2A44"/>
+    <path d="M-42 -36 l14 4" stroke="#1F2A44" stroke-width="4"/>
+    <path d="M-10 42 v16 M10 42 v16" stroke="var(--yellow)" stroke-width="5"/>
+  </g>
+  <text x="250" y="60" font-size="20" fill="#1F2A44">…</text>
+</svg>
+</div>
+<figcaption>Nabohøna. Hun vet hvem du er.</figcaption>
+</figure>
+
+<p class="end">SLUTT</p>
+<p class="next">Neste bok i serien: <b>Bernhard og Eva og Tidsmaskinen 2: Vikingene</b></p>
+
+</main>
+<script>
+const flip = document.getElementById('flip');
+const btn = document.getElementById('flipBtn');
+btn.addEventListener('click', () => {
+  const on = flip.classList.toggle('on');
+  btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+});
+</script>
+</body>
+</html>
